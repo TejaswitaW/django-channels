@@ -1,0 +1,1 @@
+Real Time Data with frontend Example in Django Channels

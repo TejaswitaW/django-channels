@@ -1,0 +1,1 @@
+Handle websocket from frontend JS in Django Channels

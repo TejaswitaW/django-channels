@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" />
+    <title>Data From Server</title>
+</head>
+<body>
+    <h1>Count Page</h1>
+    <h2 id="ct"></h2>
+ <script>
+    // var ws = new WebSocket("ws://localhost:8000/ws/jwc/")
+    var ws = new WebSocket("ws://localhost:8000/ws/ajwc/")
+    ws.onopen = function (){
+        console.log("Connecting....")
+        ws.send(JSON.stringify({
+            'msg':"Will Come Soon"
+        }))
+    }
+    ws.onmessage = function(event){
+        console.log("Message recieved evnet from server...",event)
+        console.log("Message recieved from server...",event.data)
+        data = JSON.parse(event.data)
+        console.log("Actual Data is: ",data)
+        console.log("Actual Message is: ",data.message)
+        document.getElementById("ct").innerText = data.message
+    }
+    ws.onclose = function(){
+        console.log("Closing....")
+    }
+   
+ </script>   
+</body>
+</html>

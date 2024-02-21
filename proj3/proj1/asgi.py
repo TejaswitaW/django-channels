@@ -1,0 +1,18 @@
+import os
+
+from django.core.asgi import get_asgi_application
+
+from channels.routing import ProtocolTypeRouter,URLRouter
+
+import app.routing
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proj1.settings')
+
+print("Control in asgi 1")
+application = ProtocolTypeRouter({
+    'http':get_asgi_application(),
+    'websocket':URLRouter(
+        app.routing.websocket_urlpatterns
+    )
+})
+print("Control in asgi 2")

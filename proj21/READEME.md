@@ -1,0 +1,2 @@
+Generic consumer
+JsonWebsocketConsumer

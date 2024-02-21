@@ -1,0 +1,1 @@
+Real time data example and difference between Sync ans Async Consumer in Django Channels

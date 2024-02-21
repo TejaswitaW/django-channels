@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Count Page</h1>
+    <h2 id="ct"></h2>
+    <script>
+        // var ws = new WebSocket('ws://127.0.0.1:8000/ws/ac/')
+        var ws = new WebSocket('ws://127.0.0.1:8000/ws/sc/')
+        // using event listener
+       ws.addEventListener('open',()=>{
+        console.log("WebSocket Connection Open...")
+        ws.send('Hi,Message from client...')
+       })
+
+
+    //    ws.addEventListener('message',(event)=>{
+    //     console.log("WebSocket EVENT...",event)
+    //     console.log("WebSocket Got Message from server...",event.data)
+    //     document.getElementById("ct").innerText = event.data
+    //    })
+
+       ws.addEventListener('message',(event)=>{
+        console.log("WebSocket EVENT...",event)
+        console.log("WebSocket Got Message from server...",event.data)
+        console.log("Type of event data: ",typeof(event.data))//string
+        var  parse_data = JSON.parse(event.data)
+        console.log("Type of event data: ",typeof(parse_data))//object
+        document.getElementById("ct").innerText = parse_data.count
+       })
+
+
+       ws.addEventListener('error',(event)=>{
+        console.log("WebSocket error ouccurred...",event)
+       })
+       ws.addEventListener('close',(event)=>{
+        console.log("WebSocket connection closed...",event)
+       })
+    </script>
+</body>
+</html>
